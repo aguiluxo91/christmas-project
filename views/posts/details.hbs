@@ -1,0 +1,25 @@
+<div class="container">
+    <h1 class="text-warning">Details</h1>
+    <div class="card">
+        <img class="card-img-top" src="{{ post.image }}">
+        <div class="card-body">
+            <h5 class="card-header">{{post.title}}</h5>
+            <div class="card-body">
+                <p class="card-text">{{post.text}}</p>
+                <h6>
+                    {{#if post.createdAt}}
+                       Created: {{date post.createdAt}}
+                    {{/if}}
+                </h6>
+                <p class="card-text">Post ID: {{post.id}}</p>
+                <p class="card-text">Updated: {{date post.updatedAt}}</p>
+                
+                <form action="/posts/{{ post.id }}/delete" method="post">
+                    <button type="submit" class="btn btn-danger"><i class="fa fa-trash mr-2"></i> Delete</button>
+                    
+                    <a class="btn btn-primary mr-3" href="/posts/{{post.id}}/edit"><i class="fa fa-cog mr-2"></i> Edit</a>
+                </form>
+            </div> 
+        </div>
+    </div>
+</div>

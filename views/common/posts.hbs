@@ -1,0 +1,33 @@
+<div class="container">
+    <h1 class="text-warning">Post list</h1>
+    <a class="btn btn-primary" href="/posts/new"><i class="fa fa-plus mr-2"></i> New post</a>
+    <hr>
+</div>
+
+{{#each posts as |post|}}
+{{#with post}}
+
+<div class="container mb-3">
+    <div class="card">
+        <img class="card-img-top" src="{{ image }}">
+        <div class="card-body">
+            <h5 class="card-header"><a href="/posts/{{ id }}">{{title}}</a></h5>
+            <div class="card-body">
+                <p class="card-text">{{text}}</p>
+                <h6>
+                    {{#if createdAt}}
+                        {{date createdAt}}
+                    {{/if}}
+                </h6>
+                <form action="/posts/{{ id }}/delete" method="post">
+                    <button type="submit" class="btn btn-danger mt-3"><i class="fa fa-trash mr-2"></i> Delete</button>
+                </form>
+                
+            </div> 
+        </div>
+    </div>
+    <hr>
+</div>
+
+{{/with}}
+{{/each}}

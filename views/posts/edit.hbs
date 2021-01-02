@@ -1,0 +1,26 @@
+<form class="container" action="/posts/{{id}}" method="post">
+    <h1 class="text-warning">Upload your Post</h1>
+    <p class="text-warning">Title</p>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control {{#if errors.title}}is-invalid{{/if}}" placeholder="Enter title up to 40 characters" name="title" value="{{post.title}}">
+        {{#if errors.title}}
+            <div id="validationServerUsernameFeedback"      class="invalid-feedback">
+            {{errors.title}}
+            </div>
+        {{/if}}
+    </div>
+    <p class="text-warning">Image</p>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Enter image" name="image" value="{{post.image}}">
+    </div>
+    <p class="text-warning">Text</p>
+    <div class="input-group mb-3">
+        <textarea type="text" class="form-control {{#if errors.text}}is-invalid{{/if}}" placeholder="Enter post text up to 300 characters" rows="6" name="text" value="{{post.text}}">{{post.text}}</textarea>
+        {{#if errors.text}}
+            <div id="validationServerUsernameFeedback"      class="invalid-feedback">
+            {{errors.text}}
+            </div>
+        {{/if}}
+    </div>
+    <button type="submit" class="btn btn-primary">Edit Post</button>
+</form>
