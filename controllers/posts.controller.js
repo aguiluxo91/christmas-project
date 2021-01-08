@@ -66,17 +66,15 @@ module.exports.delete = async (req, res) => {
     res.redirect('/posts');
 }
 
-module.exports.edit = (req, res) => {
-    const { title, image, text } = req.body;
+module.exports.edit = async (req, res) => {
     const { id } = req.params;
+    const post = await posts.findById(id);
     res.render('posts/edit', {
-        title: title,
-        image: image,
-        text: text
+        post
     });
 }
 
-module.exports.update = (req, res) => {
+module.exports.update = async (req, res) => {
     const { title, image, text } = req.body;
     const { id } = req.params;
     if (!title || !text || title.length > 40 || text.length > 300) {
@@ -98,11 +96,11 @@ module.exports.update = (req, res) => {
             errors: errors
         })
     } else {
-        posts.findByIdAndUpdate(id, {
+        await posts.findByIdAndUpdate(id, {
             title: title,
             image: image,
             text: text
         })
-        res.redirect('/posts')
+        res.redirect(`/posts/${id}`);
     }
 }
